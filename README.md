@@ -1,7 +1,7 @@
 # PythonPractice
-CFG course
+CFG Python course
 
-Homework: Session 1
+Session 1
 ************************
 Additional resources:<br/>
 ● **Python data-types** ★ https://realpython.com/python-data-types/<br/>
@@ -11,7 +11,7 @@ covered in the session) ★ https://realpython.com/python-string-formatting/<br/
 ● **Understanding error messages** ★ https://realpython.com/python-traceback/<br/>
 ● **Variables** ★ https://realpython.com/python-variables/
 
-Homework: Session 2
+Session 2
 ************************
 Additional resources:<br/>
 ● **Input** ★ https://realpython.com/python-input-output/<br/>
