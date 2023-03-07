@@ -2,7 +2,7 @@
 CFG course
 
 Homework: Session 1
-Additional resources:
+Additional resources:<br/>
 ● Python data-types ★ https://realpython.com/python-data-types/
 ● Strings ★ https://realpython.com/python-strings/
 ● String formatting (includes two common alternatives to the string formatting method
