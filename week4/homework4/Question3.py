@@ -27,6 +27,19 @@ def get_digit(number, n):
     return number // 10 ** n % 10
 
 
+list_of_digits = []
+
+
+def get_digit2(number):
+    list_of_digits =[int(digit) for digit in str(number)]
+    # list_of_digits =[ for digit in str(number)]
+        # list_of_digits.append(digit)
+    print(list_of_digits)
+    return list_of_digits
+
+
+get_digit2(3322145678)
+
 matching_numbers = 0
 for ind in range(7):
     if get_digit(random_number, ind) == get_digit(lottery_ticket, ind):
@@ -35,7 +48,7 @@ for ind in range(7):
 print('generated number: ' + str(random_number))
 print('lottery ticket number: ' + str(lottery_ticket))
 print(matching_numbers)
-if matching_numbers >2:
+if matching_numbers > 2:
     print('You have {} matching numbers, your prize is {}'.format(matching_numbers, prizes[matching_numbers]))
 else:
     print('Better luck next time!')
