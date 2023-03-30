@@ -1,8 +1,8 @@
+# Definition:
 # Your friend works for an antique book shop that sells books between 1800 and 1950 and wants to
 # quickly categorise books by the century and decade that they were written.
 # Write a program that takes a year (e.g. 1872)
 # and outputs the century and decade (e.g. "Nineteenth Century, Seventies")
-import math
 
 from num2words import num2words
 
@@ -14,45 +14,41 @@ decades = {10: 'Tens', 20: 'Twenties',
            70: 'Seventies', 80: 'Eighties',
            90: 'Nineties', 00: 'Hundreds'}
 
+print('*********************!')
 print('The antique book shop!')
 print('*********************!')
-# Most common usage.
-print(num2words(20))
-
-#
-# # Other variants, according to the type of article.
-print(num2words(36, to='ordinal'))
 
 
+# Most common usage of num2words
+# print(num2words(20))
+# print(num2words(36, to='ordinal'))
 # print(num2words(20, to='ordinal_num'))
 # print(num2words(36, to='year'))
 # print(num2words(36, to='currency'))
-#
-# # Language Support.
+
+# Language Support.
 # print(num2words(36, lang='es'))
 
 
 def century_from_year(year):
     century = year // 100 + 1
-    # num2words(century)
     return century
 
 
 def decade_from_year(year):
-    decade = divmod(year, 100)
-    # print(type(decade))
+    decade = year % 100 // 10 * 10
     return decade
 
 
 def century_and_decade(year):
-    # century = century_from_year(year)
-    # decade = decade_from_year(year)
-    # print(num2words(19, to='ordinal_num'))
-    # print(num2words(89, to='ordinal_num'))
-    cent_decade = divmod(year, 100)
-    # print('{},{}'.format(century, decade))
-    print('{}, {}'.format(centuries[cent_decade[0] + 1] + " Century", round(cent_decade[1], -1)))
+    century = century_from_year(year)
+    decade = decade_from_year(year)
+    # cent_decade = divmod(year, 100)
+    century = centuries[century]
+    decade = decades[int(decade)]
+    # print('{}, {}'.format(centuries[cent_decade[0] + 1] + " Century", round(cent_decade[1], -1)))
+    print('{}, {}'.format(century + " Century", decade))
 
 
-year = input('Introduce the year: ')
+year = input('Introduce the year of the book: ')
 century_and_decade(int(year))
