@@ -1,35 +1,60 @@
 import random
 import requests
 
+from Project.Dictionary import Dictionary
+from Project.Player import Player
 
-def random_pokemon():
-    pokemon_number = random.randint(1, 151)
-    url = 'https://pokeapi.co/api/v2/pokemon/{}/'.format(pokemon_number)
+print("************************************")
+print("Welcome to Pokemon Top Trumps game!")
+
+
+def getRandomNumber():
+    return random.randint(1, 151)
+
+
+def getPokemon():
+    url = 'https://pokeapi.co/api/v2/pokemon/{}/'.format(getRandomNumber())
     response = requests.get(url)
-    pokemon = response.json()
-    return {
-        'name': pokemon['name'],
-        'id': pokemon['id'],
-        'height': pokemon['height'],
-        'weight': pokemon['weight'],
-    }
-
-
-def run():
-    my_pokemon = random_pokemon()
-    print('You were given {}'.format(my_pokemon['name']))
-    stat_choice = input('Which stat do you want to use? (id, height, weight) ')
-    opponent_pokemon = random_pokemon()
-    print('The opponent chose {}'.format(opponent_pokemon['name']))
-    my_stat = my_pokemon[stat_choice]
-    opponent_stat = opponent_pokemon[stat_choice]
-
-    if my_stat > opponent_stat:
-        print('You Win!')
-    elif my_stat < opponent_stat:
-        print('You Lose!')
+    if int(response.status_code) == 200:
+        return Dictionary(response.json())
     else:
-        print('Draw!')
+        return "Error getting the pokemon!"
 
 
-run()
+def play():
+    player1 = Player(1, getPokemon().__dict__)
+    print("************************************")
+    print("Player's {} pokemon:".format(player1.id))
+    print("Pokemon's name \"{}\":".format(player1.pokemon['name'].upper()))
+    print("Pokemon's id {}:".format(player1.pokemon['id']))
+    print("Pokemon's weight {}:".format(player1.pokemon['weight']))
+    print("Pokemon's height {}:".format(player1.pokemon['height']))
+    print("************************************")
+    print("VS")
+    player2 = Player(2, getPokemon().__dict__)
+    print("************************************")
+    print("Player's {} pokemon:".format(player2.id))
+    print("Pokemon's name \"{}\":".format(player2.pokemon['name'].upper()))
+    print("Pokemon's id {}:".format(player2.pokemon['id']))
+    print("Pokemon's weight {}:".format(player2.pokemon['weight']))
+    print("Pokemon's height {}:".format(player2.pokemon['height']))
+    print("************************************")
+    # Ask the user which stat they want to use (id, height or weight)
+    stats = ['id', 'height', 'weight']
+    stat = input("Which stat they want to use (id, height or weight)?")
+    if stat in stats:
+        if player1.pokemon[stat] > player2.pokemon[stat]:
+            print("Player {} wins!".format(player1.id))
+        else:
+            print("Player {} wins!".format(player2.id))
+    else:
+        print("Incorrect stat!")
+
+
+play()
+
+# print(getPokemon().name)
+# print(getPokemon().id)
+# print(getPokemon().weight)
+# print(getPokemon().height)
+# pprint(getPokemon().__dict__)
