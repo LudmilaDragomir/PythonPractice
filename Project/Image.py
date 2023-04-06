@@ -1,15 +1,11 @@
-import urllib
+import sys  # to access the system
+import cv2
 
-import PIL
-import numpy as np
-import pokebase as pb
-from matplotlib import pyplot as plt
-from matplotlib import image as mpimg
+img = cv2.imread("pokemon1.png", cv2.IMREAD_ANYCOLOR)
 
-plt.title("Pokemon Image")
-plt.xlabel("X pixel scaling")
-plt.ylabel("Y pixels scaling")
-s3 = pb.SpriteResource('pokemon', 10081)
-image = mpimg.imread(s3.img_data)
-plt.imshow(image)
-plt.show()
+while True:
+    cv2.imshow("Pokemon", img)
+    cv2.waitKey(0)
+    sys.exit()  # to exit from all the processes
+
+cv2.destroyAllWindows()  # destroy all windows
